@@ -1,5 +1,7 @@
 # Forward Engineer 正向工程 0.0.5
 
+Java框架 - SQL代码生成器。
+
 > @author: SolarisNeko 
 >
 > @startDate: Saturday，2021-07-03
