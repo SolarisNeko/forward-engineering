@@ -1,4 +1,4 @@
-# Forward Engineer 正向工程 0.0.5
+# ForwardEngineer-0.0.6 正向工程
 
 Java框架 - SQL代码生成器。
 
@@ -10,7 +10,7 @@ Java框架 - SQL代码生成器。
 
 下载 jar 包
 
-https://gitee.com/SolarisNeko/forward-engineering/attach_files/765343/download/ForwardEngineering-0.0.5.jar
+https://gitee.com/SolarisNeko/forward-engineering/attach_files/767988/download/ForwardEngineering-0.0.6.jar
 
 ```java
 // 文档
