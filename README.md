@@ -24,16 +24,25 @@ ForwardEngineer.runPackage("com.neko.pojo.entity");
 
 ```
 ### 演示效果
+```java
+@Data
+public class Student {
+    private long id;
+    private String username;
+    private int sex;
+    private int age;
+    private Date admissionDate;
+}
+```
 ```sql
-Create Table SYSTEM_USER
+Create Table STUDENT
 (
-    `user_id`     bigint Primary Key auto_increment comment '用户Id',
-    `user_name`   varchar(255) Not Null comment '用户名',
-    `password`    varchar(255) Not Null comment '密码',
-    `nick_name`   varchar(255),
-    `age`         int,
-    `create_date` datetime
-) engine = MyISAM, charset = utf8mb4;
+    `id`             bigint,
+    `username`       varchar(255),
+    `sex`            int,
+    `age`            int,
+    `admission_date` datetime
+) engine = InnoDB, charset = utf8;
 ```
 
 

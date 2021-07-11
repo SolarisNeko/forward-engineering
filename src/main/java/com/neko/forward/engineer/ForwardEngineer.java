@@ -2,7 +2,7 @@ package com.neko.forward.engineer;
 
 import com.neko.forward.constant.DbType;
 import com.neko.forward.factory.FileFactory;
-import com.neko.forward.factory.AbstractSqlFactory;
+import com.neko.forward.factory.DatabaseAbstractFactory;
 import com.neko.forward.scan.PackageScanner;
 
 import java.io.FileNotFoundException;
@@ -19,7 +19,7 @@ public class ForwardEngineer {
 
     private static DbType dbType = DbType.MYSQL;
 
-    private static AbstractSqlFactory sqlFactory;
+    private static DatabaseAbstractFactory sqlFactory;
 
     /**
      * 运行单个 class
@@ -35,7 +35,7 @@ public class ForwardEngineer {
         }
 
         // super Factory
-        sqlFactory = AbstractSqlFactory.getFactoryByDbType(dbType);
+        sqlFactory = DatabaseAbstractFactory.getFactoryByDbType(dbType);
 
         // 2、正向工程
         System.out.println("---------- 正向工程 Start ----------------------");
@@ -60,7 +60,7 @@ public class ForwardEngineer {
         List<Class<?>> classes = PackageScanner.getClasses(packageName);
 
         // super Factory
-        sqlFactory = AbstractSqlFactory.getFactoryByDbType(dbType);
+        sqlFactory = DatabaseAbstractFactory.getFactoryByDbType(dbType);
 
         // 2、正向工程
         System.out.println("---------- 正向工程 Start ----------------------");

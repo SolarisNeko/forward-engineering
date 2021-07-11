@@ -10,7 +10,7 @@ import java.util.List;
  * @author: SolarisNeko
  * @date: 2021/7/11
  */
-public class MysqlFactory extends AbstractSqlFactory {
+public class MysqlFactory extends DatabaseAbstractFactory {
 
 
     /**

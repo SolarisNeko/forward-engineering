@@ -47,7 +47,7 @@ public class ColumnRule {
     }
 
     public static String buildDefaultColumnSql(String columnName, String defaultColumnTypeName) {
-        String columnSQL  = "`" + columnName + "`" + " " + defaultColumnTypeName + "";
-        return columnSQL;
+        // default 没有注释
+        return "`" + columnName + "` " + defaultColumnTypeName + " ";
     }
 }
