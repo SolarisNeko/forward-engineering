@@ -7,7 +7,7 @@ target/
 # jar包
 out/
 # 测试的 entity
-/src/main/java/com/neko/entity/
+/src/main/java/com/neko/pojo/entity/
 # App
 /src/main/java/com/neko/App.java
 

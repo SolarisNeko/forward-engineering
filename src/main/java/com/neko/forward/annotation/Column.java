@@ -40,7 +40,9 @@ public @interface Column {
     /** 默认值 | 有考虑不周的情况, 后续考虑用[代理泛型]实现。 */
     String defaultValue() default "";
 
-    /** 后续用于[推荐算法] */
+    /**
+     * 注释 | 后续用于推荐
+     * */
     String comment() default "";
 
 

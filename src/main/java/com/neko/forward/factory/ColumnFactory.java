@@ -45,15 +45,10 @@ public class ColumnFactory {
             String columnSQL = "";
             Column column = field.getAnnotation(Column.class);
             if (column == null) {
-                /**
-                 * 没有定义 @Column
-                 *  todo 后续没有定义, 给予默认处理
-                 * */
-//                throw new NekoException("你忘记对 entity.field 定义 @Column");
+                // 无 @Column = 无侵入式
                 columnSQL = ColumnRule.buildDefaultColumnSql(columnName, defaultColumnTypeName);
-
             } else {
-                // 只获取第1个 @Column
+                // 有 @Column
                 columnSQL = ColumnRule.buildColumnSqlonRule(column, columnName, defaultColumnTypeName);
             }
 

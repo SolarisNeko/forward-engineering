@@ -13,39 +13,50 @@ Java框架 - SQL代码生成器。
 https://gitee.com/SolarisNeko/forward-engineering/attach_files/765343/download/ForwardEngineering-0.0.5.jar
 
 ```java
-// 查看帮助手册 
+// 文档
 ForwardEngineer.readMe();
 
-// for singleton .java | 针对单个 java实体类
-ForwardEngineer.runClass("com.neko.entity.SystemUser");
+// 单个 pojo -> SQL
+ForwardEngineer.runClass("com.neko.pojo.entity.SystemUser");
 
-// scan package's entity | 扫描 package 下的 entity
-ForwardEngineer.runPackage("com.neko.entity");
+// 整个 package -> SQL
+ForwardEngineer.runPackage("com.neko.pojo.entity");
 
+```
+### 演示效果
+```sql
+Create Table SYSTEM_USER
+(
+    `user_id`     bigint Primary Key auto_increment comment '用户Id',
+    `user_name`   varchar(255) Not Null comment '用户名',
+    `password`    varchar(255) Not Null comment '密码',
+    `nick_name`   varchar(255),
+    `age`         int,
+    `create_date` datetime
+) engine = MyISAM, charset = utf8mb4;
 ```
 
 
 
 ## 示意图
-见 /README.assets/ForwardEngineer 正向工程.png
-
-![ForwardEngineer 正向工程](README.assets/ForwardEngineer 正向工程.png)
+见 /README.assets/* 下的图片
 
 # 进度
 
-## 1、目前进度
+## 1、已完成
 
-1. 使用 **@Table、@Column** 生成 [细粒度的建表SQL] 。
-2. 包扫描、单个文件，生成SQL
-3. 已加入对 **原生 Pojo** 的 `无侵入支持`
+1. 使用 @Table、@Column 生成细粒度的SQL 。
+2. 单个class, 扫描package。
+3. 对原生 Pojo 的无侵入支持
 4. 生成 .sql 文件
-5. 加入了文档API, ForwardEngineer.readMe()
+5. 加入了文档API
+6. 已加入 SQL comment 支持
+
 
 ## 2、未来计划
 
-1. 加入 **@Constraint** 支持 。
-2. 加入对 **@Index** 支持。
-3. 加入对 @Table, @Column 的 comment 解释支持。
+1. 加入 @Constraint 支持（约束）。
+2. 加入对 @Index 支持（索引）。
 
 
 

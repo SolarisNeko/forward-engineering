@@ -20,6 +20,7 @@ public class ColumnRule {
         boolean isPk = column.PK();
         boolean isAutoIncrement = column.autoIncrement();
         boolean isNotNull = column.notNull();
+        String comment = column.comment();
 
         if (type.isEmpty()) {
             // @Column.type 无输入 | 尾部空格, 必须保留
@@ -37,6 +38,9 @@ public class ColumnRule {
         }
         if (isAutoIncrement) {
             columnSQL += "auto_increment ";
+        }
+        if (!comment.isEmpty()) {
+            columnSQL += ("comment '" + comment + "' " );
         }
 
         return columnSQL;

@@ -1,15 +1,13 @@
 package com.neko.forward.engineer;
 
-import com.neko.forward.facade.SqlFacade;
-import com.neko.forward.factory.ColumnFactory;
+import com.neko.forward.constant.DbType;
 import com.neko.forward.factory.FileFactory;
-import com.neko.forward.factory.TableFactory;
+import com.neko.forward.factory.AbstractSqlFactory;
 import com.neko.forward.scan.PackageScanner;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @title:
@@ -19,6 +17,13 @@ import java.util.Map;
  */
 public class ForwardEngineer {
 
+    private static DbType dbType = DbType.MYSQL;
+
+    private static AbstractSqlFactory sqlFactory;
+
+    /**
+     * 运行单个 class
+     * */
     public static void runClass(String className) {
 
         // 1  - 扫描 package 下的所有 Class
@@ -29,11 +34,14 @@ public class ForwardEngineer {
             e.printStackTrace();
         }
 
+        // super Factory
+        sqlFactory = AbstractSqlFactory.getFactoryByDbType(dbType);
+
         // 2、正向工程
         System.out.println("---------- 正向工程 Start ----------------------");
 
             // 投入 class
-            String createTableSQL = ForwardEngineer.getCreateTableSQLByClassName(clazz);
+            String createTableSQL = sqlFactory.getCreateTableSQLByClassName(clazz);
 
             // Println
             System.out.println();
@@ -44,13 +52,15 @@ public class ForwardEngineer {
     }
 
     /**
-     * 运行 [正向工程] 入口
-     * 扫描 packageName 下的所有 Class, 并构建 DDL SQL
+     * 扫描 package
      */
     public static void runPackage(String packageName) {
 
         // 1  - 扫描 package 下的所有 Class
         List<Class<?>> classes = PackageScanner.getClasses(packageName);
+
+        // super Factory
+        sqlFactory = AbstractSqlFactory.getFactoryByDbType(dbType);
 
         // 2、正向工程
         System.out.println("---------- 正向工程 Start ----------------------");
@@ -58,7 +68,7 @@ public class ForwardEngineer {
         for (Class<?> clazz : classes) {
 
             // 投入 class
-            String createTableSQL = ForwardEngineer.getCreateTableSQLByClassName(clazz);
+            String createTableSQL = sqlFactory.getCreateTableSQLByClassName(clazz);
 
             sqlSB.append(createTableSQL);
         }
@@ -67,14 +77,14 @@ public class ForwardEngineer {
         try {
             // 生成 .sql 文件 | 如果已存在, 则覆盖
             System.out.println("请稍等.. \n");
-            // 使用 SSD I/O 1200MB/s 来作为速度上限
-            long needSeconds = sqlSB.toString().length() * 3;
-            System.out.println("预计帮你节省 " + needSeconds + "s\n");
+            // 计算节省时间
+            long needSeconds = sqlSB.toString().length() / 2 / 60;
+            System.out.println("帮你节省 " + needSeconds + " 分钟 \n");
 
             /** 生成文件 */
             FileFactory.generateSqlFile(sqlSB.toString());
 
-            System.out.println("正向工程 Finished! 请检查项目的 ~/SQL/target.sql");
+            System.out.println("正向工程 Finished!\n\n请检查项目中的新文件夹 ~/SQL/target.sql \n");
         } catch (FileNotFoundException e) {
             System.err.println("写入到文件失败！");
         } catch (IOException e) {
@@ -84,26 +94,7 @@ public class ForwardEngineer {
         System.out.println("---------- 正向工程 End ----------------------");
     }
 
-    /**
-     * 根据 className (全路径名字) 生成 table SQL
-     */
-    public static String getCreateTableSQLByClassName(Class<?> targetClass) {
 
-        // 1、反射, 获取 table 相关信息
-        Map<String, String> tableMap = TableFactory.getTableNameByClass(targetClass);
-        String table = tableMap.get("table");
-        String engine = tableMap.get("engine");
-        String charset = tableMap.get("charset");
-
-        // 2、反射, 获取 List columns 相关信息
-        List<String> columnSqlList = ColumnFactory.getColumnSqlList(targetClass);
-
-        // 3、开始构建 Table SQL
-        String tableSQL = SqlFacade.buildCreateTableSQL(table, columnSqlList, engine, charset);
-
-
-        return tableSQL;
-    }
 
     /**
      * 文档
@@ -114,13 +105,20 @@ public class ForwardEngineer {
         System.out.println("入口类 = ForwardEngineer.java ");
         System.out.println();
         System.out.println("单个 .java 文件 : ");
-        System.out.println(" ForwardEngine.runClass(\"com.neko.entity.SystemUser\"); ");
+        System.out.println(" ForwardEngine.runClass(\"com.neko.pojo.entity.SystemUser\"); ");
         System.out.println();
         System.out.println("扫描 package :");
-        System.out.println(" ForwardEngine.runPackage(\"com.neko.entity\"); ");
+        System.out.println(" ForwardEngine.runPackage(\"com.neko.pojo.entity\"); ");
         System.out.println();
         System.out.println("-----------------------------------------------");
     }
 
 
+    public static DbType getDbType() {
+        return dbType;
+    }
+
+    public static void setDbType(DbType dbType) {
+        ForwardEngineer.dbType = dbType;
+    }
 }

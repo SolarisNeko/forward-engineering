@@ -1,4 +1,4 @@
-//package com.neko.entity;
+//package com.neko.pojo.entity;
 //
 //import lombok.Data;
 //

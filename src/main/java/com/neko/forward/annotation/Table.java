@@ -32,4 +32,9 @@ public @interface Table {
      * */
     String charset() default "utf8";
 
+    /**
+     * 注释
+     * */
+    String comment() default "";
+
 }

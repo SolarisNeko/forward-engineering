@@ -8,17 +8,13 @@ import com.neko.forward.engineer.ForwardEngineer;
  */
 public class App {
 
-    private static final String packageName = "com.neko.entity";
-
-    private static final String className = "com.neko.entity.SystemUser";
-
     public static void main(String[] args) {
 
-        ForwardEngineer.readMe();
+//        ForwardEngineer.readMe();
 
-//       ForwardEngine.runClass(className);
+//       ForwardEngine.runClass("com.neko.pojo.entity.SystemUser");
 
-       ForwardEngineer.runPackage(packageName);
+       ForwardEngineer.runPackage("com.neko.pojo.entity");
     }
 
 }

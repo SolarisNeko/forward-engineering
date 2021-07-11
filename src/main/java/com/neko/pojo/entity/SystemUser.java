@@ -1,4 +1,4 @@
-//package com.neko.entity;
+//package com.neko.pojo.entity;
 //
 //import com.neko.forward.annotation.Column;
 //import com.neko.forward.annotation.Table;
@@ -20,16 +20,13 @@
 //    /**
 //     * PK, 用于 Index 快速搜索
 //     * */
-//    @Column(PK = true, autoIncrement = true)
+//    @Column(PK = true, autoIncrement = true, comment = "用户Id")
 //    private long userId;
 //
-//    /**
-//     * 账号相关
-//     * */
-//    @Column(type = "varchar(255)", notNull = true)
+//    @Column(type = "varchar(255)", notNull = true, comment = "用户名")
 //    private String userName;
 //
-//    @Column(notNull = true)
+//    @Column(notNull = true, comment = "密码")
 //    private String password;
 //
 //    /**
