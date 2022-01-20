@@ -2,6 +2,7 @@ package com.neko.explain;
 
 import com.neko.explain.annotation.NotGenerate;
 import com.neko.explain.model.GameScoreHistory;
+import com.neko.forward.util.CharacterUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
@@ -11,9 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- */
 @Slf4j
 public class JavaBeanSqlExplainer {
 
@@ -58,6 +56,10 @@ public class JavaBeanSqlExplainer {
                 Field field = fields[i];
                 NotGenerate annotation = field.getAnnotation(NotGenerate.class);
                 if (annotation != null) {
+                    // delete the last SEPARATOR
+                    if (i == fields.length - 1) {
+                        suffixSqlBuilder.delete(suffixSqlBuilder.length() - 2, suffixSqlBuilder.length());
+                    }
                     continue;
                 }
 
@@ -79,9 +81,10 @@ public class JavaBeanSqlExplainer {
             suffixSqlBuilder.append("), ");
         }
         long end = System.nanoTime();
-        double spendTime = (double) (end - start) / 1000_000;
+        double spendTime = (double) (end - start) / 1_000_000_000;
         String spendOneSqlTime = String.valueOf(spendTime / collection.size()).substring(0, 4);
-        log.info("forward generate SQL use time: {} s, generate size = {}, average generate a object sql spend {} s", spendTime, collection.size(), spendOneSqlTime);
+        log.info("forward generate SQL use time: {} s, generate size = {}, average generate a object sql spend {} s",
+                spendTime, collection.size(), spendOneSqlTime);
         return suffixSqlBuilder.substring(0, suffixSqlBuilder.length() - 2);
     }
 
@@ -108,10 +111,17 @@ public class JavaBeanSqlExplainer {
     }
 
 
+    /**
+     * InnoDB 不支持 insert delayed
+     *
+     * @param tableName   处理好的表名
+     * @param columnNames 处理好的字段名
+     * @return Insert Into ${tableName} (columns...) Values
+     */
     private static String buildPrefixInsertSql(String tableName, List<String> columnNames) {
         String join = String.join(", ", columnNames);
         return "Insert into " +
-                tableName +
+                CharacterUtil.toBigCamelLowerName(tableName) +
                 "(" +
                 join +
                 ") Values ";
