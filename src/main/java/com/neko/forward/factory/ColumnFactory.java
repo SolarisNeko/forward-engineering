@@ -1,9 +1,8 @@
 package com.neko.forward.factory;
 
 import com.neko.forward.annotation.Column;
-import com.neko.forward.exception.NekoException;
 import com.neko.forward.rule.ColumnRule;
-import com.neko.forward.rule.TypeRule;
+import com.neko.forward.rule.ParserTypeRule;
 import com.neko.forward.util.CharacterUtil;
 
 import java.lang.reflect.Field;
@@ -34,7 +33,7 @@ public class ColumnFactory {
 
             // get field.type
             Class<?> type = field.getType();
-            String defaultColumnTypeName = TypeRule.chooseDefaultColumnTypeByType(type.getName());
+            String defaultColumnTypeName = ParserTypeRule.chooseDefaultColumnTypeByType(type.getName());
 
 
             /** 构建单个 column SQL 需要的元素 */

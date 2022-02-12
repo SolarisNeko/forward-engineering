@@ -8,7 +8,7 @@ import com.neko.forward.constant.ColumnTypeEnum;
  * @author: SolarisNeko
  * @date: 2021/7/4
  */
-public class TypeRule {
+public class ParserTypeRule {
 
     public static String chooseDefaultColumnTypeByType(String classType) {
         switch (classType) {
@@ -19,6 +19,10 @@ public class TypeRule {
             case "float":
             case "java.lang.Float": {
                 return ColumnTypeEnum.FLOAT.typeName;
+            }
+            case "double":
+            case "java.lang.Double": {
+                return ColumnTypeEnum.DOUBLE.typeName;
             }
             case "long":
             case "java.lang.Long": {
@@ -38,6 +42,10 @@ public class TypeRule {
             case "java.util.Date": {
                 // datetime = "yyyy-MM-dd hh:mm:ss"
                 return ColumnTypeEnum.DATE.typeName;
+            }
+            case "byte":
+            case "java.lang.Byte": {
+                return ColumnTypeEnum.BLOB.typeName;
             }
             default: {
                 return ColumnTypeEnum.VARCHAR.typeName;

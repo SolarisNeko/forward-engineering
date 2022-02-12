@@ -40,7 +40,7 @@ public class ColumnRule {
             columnSQL += "auto_increment ";
         }
         if (!comment.isEmpty()) {
-            columnSQL += ("comment '" + comment + "' " );
+            columnSQL += ("comment '" + comment + "' ");
         }
 
         return columnSQL;

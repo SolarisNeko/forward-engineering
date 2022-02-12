@@ -1,8 +1,5 @@
 package com.neko.forward.factory;
 
-import com.neko.App;
-import org.junit.Test;
-
 import java.io.*;
 
 /**

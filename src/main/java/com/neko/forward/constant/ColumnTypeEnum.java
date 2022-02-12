@@ -9,12 +9,15 @@ package com.neko.forward.constant;
 public enum ColumnTypeEnum {
     INT("int"),
     FLOAT("float"),
+    DOUBLE("double"),
     BIG_INT("bigint"),
     VARCHAR("varchar(255)"),
     DECIMAL("decimal"),
     BOOLEAN("boolean"),
-    DATE("datetime")
+    DATE("datetime"),
+    BLOB("blob"),
     ;
+
 
     public String typeName;
 

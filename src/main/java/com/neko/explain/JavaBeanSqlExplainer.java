@@ -4,6 +4,7 @@ import com.neko.explain.annotation.NotGenerate;
 import com.neko.explain.model.GameScoreHistory;
 import com.neko.forward.util.CharacterUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
