@@ -9,10 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 /**
- * @title:
- * @description:
+ * @title: Engine.
+ * @description: 正向工程引擎，类似于 Facade Pattern.
  * @author: SolarisNeko
  * @date: 2021/7/4
  */
@@ -52,12 +54,17 @@ public class ForwardEngine {
     }
 
     /**
-     * 扫描 package
+     * 扫描 package 下的所有 class, 会过滤掉所有 Lombok 生成的 Builder
      */
     public static void runPackage(String packageName) {
 
-        // 1  - 扫描 package 下的所有 Class
-        List<Class<?>> classes = PackageScanner.getClasses(packageName);
+        // 1、scan all Class in package
+        List<Class<?>> allClasses = PackageScanner.getClasses(packageName);
+
+        // 2. filter name end with Builder, delete Design Pattern Builder's class
+        List<Class<?>> classes = allClasses.stream()
+            .filter(clazz -> !clazz.getSimpleName().toLowerCase(Locale.ROOT).endsWith("builder"))
+            .collect(Collectors.toList());
 
         // super Factory
         sqlFactory = DatabaseAbstractFactory.getFactoryByDbType(dbType);
