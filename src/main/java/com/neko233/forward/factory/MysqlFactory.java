@@ -18,31 +18,30 @@ public class MysqlFactory extends DatabaseAbstractFactory {
      * */
     @Override
     public String makeTableSqlForMySQL(TableMetaData tableMetaData, List<String> columnSqlList) {
-        // 后续考虑多线程扫描包
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sqlBuilder = new StringBuilder();
 
         String engine = tableMetaData.getEngine();
         String charset = tableMetaData.getCharset();
 
         // table header
-        sb.append("Create Table " + tableMetaData.getTableName() + "( " );
+        sqlBuilder.append("Create Table " + tableMetaData.getTableName().toLowerCase() + "( " );
         for (String columnSQL : columnSqlList) {
-            sb.append(columnSQL);
+            sqlBuilder.append(columnSQL);
         }
         // table foot
-        sb.append(" ) ");
+        sqlBuilder.append(" ) ");
         if (!engine.isEmpty()) {
-            sb.append("engine = " + engine + ", ");
+            sqlBuilder.append("engine = " + engine + ", ");
         }
         if (!charset.isEmpty()) {
-            sb.append("charset = " + charset);
+            sqlBuilder.append("charset = " + charset);
         }
-        sb.append(";");
+        sqlBuilder.append(";");
 
         // Windows 换行 | SQL之间, 有1空行
-        sb.append("\r\n\r\n");
+        sqlBuilder.append("\r\n\r\n");
 
-        return sb.toString();
+        return sqlBuilder.toString();
     }
 
 
