@@ -1,6 +1,6 @@
 package com.neko;
 
-import com.neko.forward.engineer.ForwardEngineer;
+import com.neko.forward.engineer.ForwardEngine;
 
 /**
  * 正向工程
@@ -14,7 +14,7 @@ public class App {
 
 //       ForwardEngine.runClass("com.neko.pojo.entity.SystemUser");
 
-       ForwardEngineer.runPackage("com.neko.pojo.entity");
+       ForwardEngine.runPackage("com.neko.pojo.entity");
     }
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * @author: SolarisNeko
  * @date: 2021/7/4
  */
-public class ForwardEngineer {
+public class ForwardEngine {
 
     private static DbType dbType = DbType.MYSQL;
 
@@ -119,6 +119,6 @@ public class ForwardEngineer {
     }
 
     public static void setDbType(DbType dbType) {
-        ForwardEngineer.dbType = dbType;
+        ForwardEngine.dbType = dbType;
     }
 }

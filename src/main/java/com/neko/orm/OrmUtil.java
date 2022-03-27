@@ -23,8 +23,6 @@ public class OrmUtil {
 
         GameScore test = orm("select `userId`, a, b, gameId From ddd", GameScore.class);
         System.out.println(test);
-
-
     }
 
     public static <T> T orm(String sql, Class clazz, Object... params) throws InstantiationException, IllegalAccessException, InvocationTargetException {
