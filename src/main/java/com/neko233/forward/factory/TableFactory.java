@@ -1,10 +1,10 @@
-package com.neko.forward.factory;
+package com.neko233.forward.factory;
 
-import com.neko.forward.annotation.Table;
-import com.neko.forward.constant.CharsetEnum;
-import com.neko.forward.constant.EngineEnum;
-import com.neko.forward.util.CharacterUtil;
-import com.neko.pojo.dto.TableDTO;
+import com.neko233.forward.annotation.Table;
+import com.neko233.forward.constant.CharsetEnum;
+import com.neko233.forward.constant.EngineEnum;
+import com.neko233.forward.entity.TableMetaData;
+import com.neko233.forward.util.CharacterUtil;
 
 /**
  * @title:
@@ -18,9 +18,9 @@ public class TableFactory {
      * give className, return tableName in [Big Camel] format.
      * 给类名, 返回大驼峰表名。
      */
-    public static TableDTO getTableNameByClass(Class<?> targetClass) {
+    public static TableMetaData getTableNameByClass(Class<?> targetClass) {
         // 最终构建的【大驼峰Table名字】
-        TableDTO tableDTO = new TableDTO();
+        TableMetaData tableMetaData = new TableMetaData();
         String tableName;
         String engine;
         String charset;
@@ -37,10 +37,10 @@ public class TableFactory {
             engine = EngineEnum.INNODB.getEngine();
             charset = CharsetEnum.UTF8.getCharset();
 
-            tableDTO.setTableName(tableName);
-            tableDTO.setEngine(engine);
-            tableDTO.setCharset(charset);
-            tableDTO.setComment(comment);
+            tableMetaData.setTableName(tableName);
+            tableMetaData.setEngine(engine);
+            tableMetaData.setCharset(charset);
+            tableMetaData.setComment(comment);
         } else {
             // parse Annotation
             for (int i = 0; i < tableAnnotation.length; i++) {
@@ -60,13 +60,13 @@ public class TableFactory {
                     );
                 }
 
-                tableDTO.setTableName(tableName);
-                tableDTO.setEngine(engine);
-                tableDTO.setCharset(charset);
-                tableDTO.setComment(comment);
+                tableMetaData.setTableName(tableName);
+                tableMetaData.setEngine(engine);
+                tableMetaData.setCharset(charset);
+                tableMetaData.setComment(comment);
             }
         }
 
-        return tableDTO;
+        return tableMetaData;
     }
 }

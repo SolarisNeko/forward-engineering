@@ -1,6 +1,6 @@
-package com.neko.forward.rule;
+package com.neko233.forward.rule;
 
-import com.neko.forward.constant.ColumnTypeEnum;
+import com.neko233.forward.constant.ColumnTypeEnum;
 
 /**
  * @title:

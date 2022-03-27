@@ -1,4 +1,4 @@
-package com.neko.forward.annotation;
+package com.neko233.forward.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

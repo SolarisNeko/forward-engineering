@@ -1,6 +1,6 @@
-package com.neko.forward.factory;
+package com.neko233.forward.factory;
 
-import com.neko.pojo.dto.TableDTO;
+import com.neko233.forward.entity.TableMetaData;
 
 import java.util.List;
 
@@ -17,15 +17,15 @@ public class MysqlFactory extends DatabaseAbstractFactory {
      * 制造 Create Table SQL - MySQL
      * */
     @Override
-    public String makeTableSqlForMySQL(TableDTO tableDTO, List<String> columnSqlList) {
+    public String makeTableSqlForMySQL(TableMetaData tableMetaData, List<String> columnSqlList) {
         // 后续考虑多线程扫描包
         StringBuffer sb = new StringBuffer();
 
-        String engine = tableDTO.getEngine();
-        String charset = tableDTO.getCharset();
+        String engine = tableMetaData.getEngine();
+        String charset = tableMetaData.getCharset();
 
         // table header
-        sb.append("Create Table " + tableDTO.getTableName() + "( " );
+        sb.append("Create Table " + tableMetaData.getTableName() + "( " );
         for (String columnSQL : columnSqlList) {
             sb.append(columnSQL);
         }
@@ -53,13 +53,13 @@ public class MysqlFactory extends DatabaseAbstractFactory {
     public String getCreateTableSQLByClassName(Class<?> targetClass) {
 
         // 1、table 信息
-        TableDTO tableDTO = TableFactory.getTableNameByClass(targetClass);
+        TableMetaData tableMetaData = TableFactory.getTableNameByClass(targetClass);
 
         // 2、column 信息
         List<String> columnSqlList = ColumnFactory.getColumnSqlList(targetClass);
 
         // 3、开始构建 Table SQL
-        String tableSQL = this.makeTableSqlForMySQL(tableDTO, columnSqlList);;
+        String tableSQL = this.makeTableSqlForMySQL(tableMetaData, columnSqlList);;
 
 
         return tableSQL;

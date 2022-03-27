@@ -1,4 +1,4 @@
-package com.neko.forward.exception;
+package com.neko233.forward.exception;
 
 /**
  * @title:

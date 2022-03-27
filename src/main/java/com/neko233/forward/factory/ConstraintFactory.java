@@ -1,4 +1,4 @@
-package com.neko.forward.factory;
+package com.neko233.forward.factory;
 
 /**
  * @title:

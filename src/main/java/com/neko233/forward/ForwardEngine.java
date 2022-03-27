@@ -1,9 +1,10 @@
-package com.neko.forward;
+package com.neko233.forward;
 
-import com.neko.forward.constant.DbType;
-import com.neko.forward.factory.FileFactory;
-import com.neko.forward.factory.DatabaseAbstractFactory;
-import com.neko.forward.scan.PackageScanner;
+import com.neko233.forward.constant.DbType;
+import com.neko233.forward.factory.FileFactory;
+import com.neko233.forward.factory.DatabaseAbstractFactory;
+import com.neko233.forward.scan.PackageScanner;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.List;
  * @author: SolarisNeko
  * @date: 2021/7/4
  */
+@Slf4j
 public class ForwardEngine {
 
     private static DbType dbType = DbType.MYSQL;
@@ -23,7 +25,7 @@ public class ForwardEngine {
 
     /**
      * 运行单个 class
-     * */
+     */
     public static void runClass(String className) {
 
         // 1  - 扫描 package 下的所有 Class
@@ -40,13 +42,11 @@ public class ForwardEngine {
         // 2、正向工程
         System.out.println("---------- 正向工程 Start ----------------------");
 
-            // 投入 class
-            String createTableSQL = sqlFactory.getCreateTableSQLByClassName(clazz);
+        // 投入 class
+        String createTableSQL = sqlFactory.getCreateTableSQLByClassName(clazz);
 
-            // Println
-            System.out.println();
-            System.out.println(createTableSQL);
-            System.out.println();
+        // Println
+        System.out.println("\n" + createTableSQL + "\n");
 
         System.out.println("---------- 正向工程 End ----------------------");
     }
@@ -95,10 +95,9 @@ public class ForwardEngine {
     }
 
 
-
     /**
      * 文档
-     * */
+     */
     public static void readMe() {
         System.out.println("------------ How to use ForwardEngineer -------------------");
         System.out.println();

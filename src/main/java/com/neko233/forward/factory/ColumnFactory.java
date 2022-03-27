@@ -1,9 +1,9 @@
-package com.neko.forward.factory;
+package com.neko233.forward.factory;
 
-import com.neko.forward.annotation.Column;
-import com.neko.forward.rule.ColumnRule;
-import com.neko.forward.rule.ParserTypeRule;
-import com.neko.forward.util.CharacterUtil;
+import com.neko233.forward.annotation.Column;
+import com.neko233.forward.rule.ColumnRule;
+import com.neko233.forward.rule.ParserTypeRule;
+import com.neko233.forward.util.CharacterUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

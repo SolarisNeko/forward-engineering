@@ -1,6 +1,6 @@
-package com.neko.forward.rule;
+package com.neko233.forward.rule;
 
-import com.neko.forward.annotation.Column;
+import com.neko233.forward.annotation.Column;
 
 /**
  * @title:

@@ -1,4 +1,4 @@
-package com.neko.forward.annotation;
+package com.neko233.forward.annotation;
 
 /**
  * @author LHJ

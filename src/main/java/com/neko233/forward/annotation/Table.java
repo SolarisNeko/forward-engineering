@@ -1,7 +1,4 @@
-package com.neko.forward.annotation;
-
-import com.neko.forward.constant.CharsetEnum;
-import com.neko.forward.constant.EngineEnum;
+package com.neko233.forward.annotation;
 
 import java.lang.annotation.*;
 

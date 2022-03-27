@@ -1,4 +1,4 @@
-package com.neko.forward.constant;
+package com.neko233.forward.constant;
 
 /**
  * @author LHJ

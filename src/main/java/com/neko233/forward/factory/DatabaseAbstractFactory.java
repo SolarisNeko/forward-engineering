@@ -1,7 +1,7 @@
-package com.neko.forward.factory;
+package com.neko233.forward.factory;
 
-import com.neko.forward.constant.DbType;
-import com.neko.pojo.dto.TableDTO;
+import com.neko233.forward.constant.DbType;
+import com.neko233.forward.entity.TableMetaData;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public abstract class DatabaseAbstractFactory {
     /**
      * 制造 Create Table SQL - MySQL
      * */
-    public abstract String makeTableSqlForMySQL(TableDTO tableDTO, List<String> columnSqlList);
+    public abstract String makeTableSqlForMySQL(TableMetaData tableMetaData, List<String> columnSqlList);
 
     /**
      * 获取要调用的 tableDTO, columnList 信息
