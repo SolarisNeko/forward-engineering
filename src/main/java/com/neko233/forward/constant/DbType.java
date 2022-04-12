@@ -1,35 +1,25 @@
 package com.neko233.forward.constant;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
- * @title:
- * @description:
- * @author: SolarisNeko
- * @date: 2021/7/4
+ *
+ * @date 2021/7/4
+ * @author SolarisNeko
  */
+@Getter
+@AllArgsConstructor
 public enum DbType {
 
     MYSQL("mysql"),
-    ORACLE("oracle"),
-    SQLSERVER("sqlserver"),
-    POSTGRE("postgre"),
-    GAUSSDB("guass")
+    HIVE("hive"),
+//    ORACLE("oracle"),
+//    SQLSERVER("sqlserver"),
+//    POSTGRE("postgre"),
+//    GAUSSDB("guass")
     ;
 
-
-    /**
-     * 小写名字
-     * */
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    DbType(String name) {
-        this.name = name;
-    }
 }

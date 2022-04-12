@@ -1,26 +1,45 @@
-package com.neko233.forward.factory;
+package com.neko233.forward.metadata;
 
 import com.neko233.forward.annotation.Table;
 import com.neko233.forward.constant.CharsetEnum;
 import com.neko233.forward.constant.EngineEnum;
-import com.neko233.forward.entity.TableMetaData;
 import com.neko233.forward.util.CharacterUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @title:
  * @description:
  * @author: SolarisNeko
- * @date: 2021/7/4
+ * @date: 2021/7/11
  */
-public class TableFactory {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class TableMetaData {
+
+    private Class<?> originalClass;
+
+    private String tableName;
+
+    private String charset;
+
+    private String engine;
+
+    private String comment;
 
     /**
      * give className, return tableName in [Big Camel] format.
      * 给类名, 返回大驼峰表名。
      */
-    public static TableMetaData getTableNameByClass(Class<?> targetClass) {
+    public static TableMetaData getTableMetaDataByClass(Class<?> targetClass) {
         // 最终构建的【大驼峰Table名字】
         TableMetaData tableMetaData = new TableMetaData();
+        tableMetaData.setOriginalClass(targetClass);
+
         String tableName;
         String engine;
         String charset;
@@ -69,4 +88,5 @@ public class TableFactory {
 
         return tableMetaData;
     }
+
 }

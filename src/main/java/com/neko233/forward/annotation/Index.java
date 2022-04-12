@@ -1,9 +1,14 @@
 package com.neko233.forward.annotation;
 
+import java.lang.annotation.*;
+
 /**
  * @author LHJ
  * @date 2021/7/5
  */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@Documented
 public @interface Index {
 
     /**

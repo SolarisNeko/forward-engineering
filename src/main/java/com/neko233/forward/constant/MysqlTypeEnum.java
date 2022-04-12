@@ -6,7 +6,7 @@ package com.neko233.forward.constant;
  * @author: SolarisNeko
  * @date: 2021/7/5
  */
-public enum ColumnTypeEnum {
+public enum MysqlTypeEnum {
     INT("int"),
     FLOAT("float"),
     DOUBLE("double"),
@@ -21,7 +21,7 @@ public enum ColumnTypeEnum {
 
     public String typeName;
 
-    private ColumnTypeEnum(String typeName) {
+    private MysqlTypeEnum(String typeName) {
         this.typeName = typeName;
     }
 

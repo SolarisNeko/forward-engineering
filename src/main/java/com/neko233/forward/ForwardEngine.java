@@ -2,7 +2,7 @@ package com.neko233.forward;
 
 import com.neko233.forward.constant.DbType;
 import com.neko233.forward.factory.FileFactory;
-import com.neko233.forward.factory.DatabaseAbstractFactory;
+import com.neko233.forward.strategy.generate.GenerateStrategy;
 import com.neko233.forward.scan.PackageScanner;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,63 +21,68 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ForwardEngine {
 
-    private static DbType dbType = DbType.MYSQL;
-
-    private static DatabaseAbstractFactory sqlFactory;
+    private static GenerateStrategy SQL_GENERATE_FACTORY;
 
     /**
      * 运行单个 class
      */
-    public static void runClass(String className) {
+    public static void runClass(DbType dbType, String className) {
+        runClass(dbType.getName(), className);
+    }
 
+    public static void runClass(DbType dbType, Class<?> clazz) {
+        runClass(dbType.getName(), clazz);
+    }
+
+    public static void runClass(String dbType, String className) {
         // 1  - 扫描 package 下的所有 Class
-        Class<?> clazz = null;
+        Class<?> clazz;
         try {
             clazz = Class.forName(className);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException("该 class 不存在");
         }
+        runClass(dbType, clazz);
+    }
+
+    public static void runClass(String dbType, Class<?> clazz) {
 
         // super Factory
-        sqlFactory = DatabaseAbstractFactory.getFactoryByDbType(dbType);
-
-        // 2、正向工程
+        SQL_GENERATE_FACTORY = GenerateStrategy.getStrategyByDbType(dbType);
         System.out.println("---------- 正向工程 Start ----------------------");
-
         // 投入 class
-        String createTableSQL = sqlFactory.getCreateTableSQLByClassName(clazz);
-
-        // Println
-        System.out.println("\n" + createTableSQL + "\n");
-
+        String createSql = SQL_GENERATE_FACTORY.generateCreateSqlByClass(clazz);
+        System.out.println("\n" + createSql + "\n");
         System.out.println("---------- 正向工程 End ----------------------");
     }
 
     /**
      * 扫描 package 下的所有 class, 会过滤掉所有 Lombok 生成的 Builder
      */
-    public static void runPackage(String packageName) {
+    public static void runPackage(DbType dbType, String packageName) {
+        runPackage(dbType.getName(), packageName);
+    }
+
+    public static void runPackage(String dbType, String packageName) {
 
         // 1、scan all Class in package
         List<Class<?>> allClasses = PackageScanner.getClasses(packageName);
 
         // 2. filter name end with Builder, delete Design Pattern Builder's class
         List<Class<?>> classes = allClasses.stream()
-            .filter(clazz -> !clazz.getSimpleName().toLowerCase(Locale.ROOT).endsWith("builder"))
-            .collect(Collectors.toList());
+                .filter(clazz -> !clazz.getSimpleName().toLowerCase(Locale.ROOT).endsWith("builder"))
+                .collect(Collectors.toList());
 
         // super Factory
-        sqlFactory = DatabaseAbstractFactory.getFactoryByDbType(dbType);
+        SQL_GENERATE_FACTORY = GenerateStrategy.getStrategyByDbType(dbType);
 
         // 2、正向工程
         System.out.println("---------- 正向工程 Start ----------------------");
-        StringBuilder sqlSB = new StringBuilder();
+        StringBuilder sqlBuilder = new StringBuilder();
         for (Class<?> clazz : classes) {
-
             // 投入 class
-            String createTableSQL = sqlFactory.getCreateTableSQLByClassName(clazz);
-
-            sqlSB.append(createTableSQL);
+            String createTableSql = SQL_GENERATE_FACTORY.generateCreateSqlByClass(clazz);
+            sqlBuilder.append(createTableSql);
         }
 
         //  todo - 扫描 package, 会生成文件
@@ -85,11 +90,11 @@ public class ForwardEngine {
             // 生成 .sql 文件 | 如果已存在, 则覆盖
             System.out.println("请稍等.. \n");
             // 计算节省时间
-            long needSeconds = sqlSB.toString().length() / 2 / 60;
+            long needSeconds = sqlBuilder.toString().length() / 2 / 60;
             System.out.println("帮你节省 " + needSeconds + " 分钟 \n");
 
             /** 生成文件 */
-            FileFactory.generateSqlFile(sqlSB.toString());
+            FileFactory.generateSqlFile(sqlBuilder.toString());
 
             System.out.println("正向工程 Finished!\n\n请检查项目中的新文件夹 ~/SQL/target.sql \n");
         } catch (FileNotFoundException e) {
@@ -99,6 +104,15 @@ public class ForwardEngine {
         }
 
         System.out.println("---------- 正向工程 End ----------------------");
+    }
+
+    /**
+     * 注册自定义的【生成策略】
+     * @param key 策略名
+     * @param strategy 策略
+     */
+    public static void registerGenerateStrategy(String key, GenerateStrategy strategy) {
+        GenerateStrategy.registerStrategy(key, strategy);
     }
 
 
@@ -119,12 +133,4 @@ public class ForwardEngine {
         System.out.println("-----------------------------------------------");
     }
 
-
-    public static DbType getDbType() {
-        return dbType;
-    }
-
-    public static void setDbType(DbType dbType) {
-        ForwardEngine.dbType = dbType;
-    }
 }

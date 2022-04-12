@@ -13,7 +13,7 @@ public class ColumnRule {
      * 基于 Column 规则
      * 构建 entity.field -> Column DDL 的 SQL
      */
-    public static String buildColumnSqlonRule(Column column, String columnName, String defaultColumnType) {
+    public static String generateSqlByAnnotation(Column column, String columnName, String defaultColumnType) {
         String columnSQL;
 
         String type = column.type();
@@ -46,8 +46,8 @@ public class ColumnRule {
         return columnSQL;
     }
 
-    public static String buildDefaultColumnSql(String columnName, String defaultColumnTypeName) {
+    public static String generateSqlByDefault(String columnName, String defaultColumnTypeName) {
         // default 没有注释
-        return "`" + columnName + "` " + defaultColumnTypeName + " ";
+        return "`" + columnName + "` " + defaultColumnTypeName;
     }
 }

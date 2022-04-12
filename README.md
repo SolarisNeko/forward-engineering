@@ -1,24 +1,23 @@
 # ForwardEngineer 正向工程
+# 介绍
 @author: SolarisNeko
 
-Forward Engineering, use to Java Pojo -> Table DDL.
+正向工程, 是一款将 Java Pojo 快速翻译成 SQL 的工具。
 
-Now, just support:
+支持单个、包目录筛选。
+
+目前支持
 1. MySQL
-
-正向工程，用于将 Java Pojo -> Table DDL。
-
+2. Hive
 
 
-# Base
-## Use
+# Use
 
 ```xml
-
 <dependency>
     <groupId>com.neko233</groupId>
     <artifactId>forward-engineering</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 
@@ -62,9 +61,11 @@ Create Table STUDENT
   charset = utf8;
 ```
 
-## 示意图
-
-见 /README.assets/* 下的图片
+## 自定义
+```java
+// register your diy strategy
+ForwardEngine.registerGenerateStrategy("postgre", YourPostgreStrategy);
+```
 
 # 进度
 
@@ -98,7 +99,7 @@ Create Table STUDENT
 
 ## 2、Origin Intention 初衷
 
-### 原因 1
+### Reason 1
 
 ​ 公司有一个框架，用 `java` 写 `SQL`，维护表结构。
 
@@ -108,7 +109,7 @@ Create Table STUDENT
 
 > 1、Java 即 SQL
 
-### 原因 2
+### Reason 2
 
 ​ 同时，随着时代发展，我们的 Table 逐渐去除 FK（Foreign Key），当 Table 命名不规范的时候，你根本不知道一些==字段的关联关系==。
 
