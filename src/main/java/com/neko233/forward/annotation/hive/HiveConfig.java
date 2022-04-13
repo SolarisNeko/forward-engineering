@@ -11,6 +11,8 @@ import java.lang.annotation.*;
 @Documented
 public @interface HiveConfig {
 
+    boolean external() default false;
+
     String terminatedBy() default ",";
 
     String storedAs() default "textfile";

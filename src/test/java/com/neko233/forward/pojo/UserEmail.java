@@ -7,12 +7,13 @@ import lombok.Data;
  * Date on 2022-04-12
  */
 @Data
-public class User {
+public class UserEmail {
 
     Integer id;
     String name;
     Integer age;
     String phone;
-    String email;
+
+    Email email;
 
 }

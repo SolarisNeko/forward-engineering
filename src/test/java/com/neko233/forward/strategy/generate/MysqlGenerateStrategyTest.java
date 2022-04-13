@@ -3,7 +3,7 @@ package com.neko233.forward.strategy.generate;
 import com.neko233.forward.ForwardEngine;
 import com.neko233.forward.constant.DbType;
 import com.neko233.forward.pojo.User;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author SolarisNeko

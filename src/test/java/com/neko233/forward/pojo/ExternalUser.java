@@ -1,5 +1,6 @@
 package com.neko233.forward.pojo;
 
+import com.neko233.forward.annotation.hive.HiveConfig;
 import lombok.Data;
 
 /**
@@ -7,7 +8,8 @@ import lombok.Data;
  * Date on 2022-04-12
  */
 @Data
-public class User {
+@HiveConfig(external = true, location = "/user")
+public class ExternalUser {
 
     Integer id;
     String name;

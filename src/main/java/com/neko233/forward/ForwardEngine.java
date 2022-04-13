@@ -26,15 +26,15 @@ public class ForwardEngine {
     /**
      * 运行单个 class
      */
-    public static void runClass(DbType dbType, String className) {
-        runClass(dbType.getName(), className);
+    public static String runClass(DbType dbType, String className) {
+        return runClass(dbType.getName(), className);
     }
 
-    public static void runClass(DbType dbType, Class<?> clazz) {
-        runClass(dbType.getName(), clazz);
+    public static String runClass(DbType dbType, Class<?> clazz) {
+        return runClass(dbType.getName(), clazz);
     }
 
-    public static void runClass(String dbType, String className) {
+    public static String runClass(String dbType, String className) {
         // 1  - 扫描 package 下的所有 Class
         Class<?> clazz;
         try {
@@ -42,10 +42,10 @@ public class ForwardEngine {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("该 class 不存在");
         }
-        runClass(dbType, clazz);
+        return runClass(dbType, clazz);
     }
 
-    public static void runClass(String dbType, Class<?> clazz) {
+    public static String runClass(String dbType, Class<?> clazz) {
 
         // super Factory
         SQL_GENERATE_FACTORY = GenerateStrategy.getStrategyByDbType(dbType);
@@ -54,6 +54,7 @@ public class ForwardEngine {
         String createSql = SQL_GENERATE_FACTORY.generateCreateSqlByClass(clazz);
         System.out.println("\n" + createSql + "\n");
         System.out.println("---------- 正向工程 End ----------------------");
+        return createSql;
     }
 
     /**

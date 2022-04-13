@@ -3,7 +3,7 @@ package com.neko233.forward.metadata;
 import com.neko233.forward.annotation.Table;
 import com.neko233.forward.constant.CharsetEnum;
 import com.neko233.forward.constant.EngineEnum;
-import com.neko233.forward.util.CharacterUtil;
+import com.neko233.forward.util.CamelCaseUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -50,7 +50,7 @@ public class TableMetaData {
 
         if (tableAnnotation.length == 0) {
             /** 没有 @Table = 使用默认值 */
-            tableName = CharacterUtil.toBigCamelUpperName(
+            tableName = CamelCaseUtil.toBigCamelUpperName(
                     targetClass.getSimpleName()
             );
             engine = EngineEnum.INNODB.getEngine();
@@ -74,7 +74,7 @@ public class TableMetaData {
                     /**
                      * 大驼峰 = 将 SystemUser -> SYSTEM_USER
                      * */
-                    tableName = CharacterUtil.toBigCamelUpperName(
+                    tableName = CamelCaseUtil.toBigCamelUpperName(
                             targetClass.getSimpleName()
                     );
                 }

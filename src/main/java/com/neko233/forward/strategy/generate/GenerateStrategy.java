@@ -5,8 +5,7 @@ import com.neko233.forward.constant.DbType;
 import com.neko233.forward.metadata.ColumnMetaData;
 import com.neko233.forward.metadata.TableMetaData;
 import com.neko233.forward.rule.ColumnRule;
-import com.neko233.forward.strategy.typeRule.ParserTypeRule;
-import com.neko233.forward.util.CharacterUtil;
+import com.neko233.forward.util.CamelCaseUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -79,8 +78,8 @@ public interface GenerateStrategy {
         // table header
         sqlBuilder.append("Drop table if exists ")
                 .append(tableMetaData.getTableName().toLowerCase())
-                .append(";")
-                .append("\nCreate Table if not exists ")
+                .append(";\n")
+                .append("Create Table if not exists ")
                 .append(tableMetaData.getTableName().toLowerCase())
                 .append("( ");
         for (String columnSql : getColumnSqlList(columnMetaData)) {
@@ -109,7 +108,7 @@ public interface GenerateStrategy {
             String defaultColumnTypeName = parseColumnRule(field.getType());
 
             // 构建单个 column SQL 需要的元素
-            String columnName = CharacterUtil.toBigCamelLowerName(field.getName());
+            String columnName = CamelCaseUtil.toBigCamelLowerName(field.getName());
 
             // 批量处理 field 的 @interface = @Column 的部分。
             String columnSql;
