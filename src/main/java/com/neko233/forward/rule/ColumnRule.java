@@ -48,6 +48,6 @@ public class ColumnRule {
 
     public static String generateSqlByDefault(String columnName, String defaultColumnTypeName) {
         // default 没有注释
-        return "`" + columnName + "` " + defaultColumnTypeName;
+        return "`" + columnName + "` " + defaultColumnTypeName + " not null";
     }
 }

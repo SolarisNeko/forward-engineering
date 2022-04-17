@@ -24,7 +24,7 @@ public class HiveGenerateStrategy implements GenerateStrategy {
                 .append("Create ").append(external).append("Table if not exists ")
                 .append(tableMetaData.getTableName().toLowerCase())
                 .append("( ");
-        for (String columnSql : getColumnSqlList(columnMetaData)) {
+        for (String columnSql : generateColumnSqlList(columnMetaData)) {
             sqlBuilder.append(columnSql);
         }
         // table foot

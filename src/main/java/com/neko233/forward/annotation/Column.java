@@ -12,6 +12,7 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Documented
 public @interface Column {
+
     /**
      * 字段名 | 如果不填, 自动解析field -> 小写字段名
      *  解析规则 = (大写解析 -> 大驼峰) -> 转小写
@@ -39,9 +40,16 @@ public @interface Column {
     String defaultValue() default "";
 
     /**
-     * 注释 | 后续用于推荐
+     * 列注释
      * */
     String comment() default "";
+
+    /**
+     * 索引组, 组名为 idx_???? 的 ??? 部分
+     * 如果为 "", 则不生成索引
+     * @return 索引组名
+     */
+    String indexGroup() default "";
 
 
 }

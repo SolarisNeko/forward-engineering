@@ -3,13 +3,10 @@ package com.neko233.forward.strategy.generate;
 import com.neko233.forward.metadata.ColumnMetaData;
 import com.neko233.forward.metadata.TableMetaData;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Field;
@@ -71,7 +68,7 @@ public class GenerateStrategyTest {
     public void testGetColumnSqlList() throws Exception {
         List<String> result = null;
         try {
-            result = generateStrategy.getColumnSqlList(new ColumnMetaData(Arrays.<Field>asList(null)));
+            result = generateStrategy.generateColumnSqlList(new ColumnMetaData(Arrays.<Field>asList(null)));
         } catch (Exception e) {
         }
         Assertions.assertNull(result);

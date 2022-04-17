@@ -82,7 +82,7 @@ public interface GenerateStrategy {
                 .append("Create Table if not exists ")
                 .append(tableMetaData.getTableName().toLowerCase())
                 .append("( ");
-        for (String columnSql : getColumnSqlList(columnMetaData)) {
+        for (String columnSql : generateColumnSqlList(columnMetaData)) {
             sqlBuilder.append(columnSql);
         }
         // table foot
@@ -95,7 +95,7 @@ public interface GenerateStrategy {
      * @param columnMetaData 列元数据
      * @return 多条列SQL
      */
-    default List<String> getColumnSqlList(ColumnMetaData columnMetaData) {
+    default List<String> generateColumnSqlList(ColumnMetaData columnMetaData) {
         List<String> columnSqlList = new ArrayList<>();
         List<Field> columnList = columnMetaData.getColumnList();
 

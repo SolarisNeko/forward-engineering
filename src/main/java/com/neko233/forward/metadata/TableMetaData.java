@@ -54,7 +54,7 @@ public class TableMetaData {
                     targetClass.getSimpleName()
             );
             engine = EngineEnum.INNODB.getEngine();
-            charset = CharsetEnum.UTF8.getCharset();
+            charset = CharsetEnum.UTF8MB4.getCharset();
 
             tableMetaData.setTableName(tableName);
             tableMetaData.setEngine(engine);
