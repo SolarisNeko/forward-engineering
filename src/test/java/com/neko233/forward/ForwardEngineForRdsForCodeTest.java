@@ -12,7 +12,7 @@ public class ForwardEngineForRdsForCodeTest {
     @Test
     public void runClass() {
         String s = CodeForwardEngine.runClass(CodeEngineName.JAVA_SPRING_WEB_2_x_x, Email.class);
-        System.out.println(s);
+//        System.out.println(s);
 
     }
 }
