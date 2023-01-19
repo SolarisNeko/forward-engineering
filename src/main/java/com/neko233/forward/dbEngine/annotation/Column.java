@@ -3,10 +3,10 @@ package com.neko233.forward.dbEngine.annotation;
 import java.lang.annotation.*;
 
 /**
- * @title: Column 字段
- * @description: 用于 DDL 建表
- * @author: SolarisNeko
- * @date: 2021/7/4
+ * title: Column 字段
+ * description: 用于 DDL 建表
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/4
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

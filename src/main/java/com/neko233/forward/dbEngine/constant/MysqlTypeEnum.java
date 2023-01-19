@@ -1,10 +1,10 @@
 package com.neko233.forward.dbEngine.constant;
 
 /**
- * @title:
- * @description:
- * @author: SolarisNeko
- * @date: 2021/7/5
+ * title:
+ * description:
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/5
  */
 public enum MysqlTypeEnum {
     INT("int"),

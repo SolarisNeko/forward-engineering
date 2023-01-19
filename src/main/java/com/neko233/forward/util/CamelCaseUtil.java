@@ -3,10 +3,10 @@ package com.neko233.forward.util;
 import com.neko233.forward.dbEngine.exception.NekoException;
 
 /**
- * @title 处理 char 工具
- * @description: 目前主要用来处理 [ Big Camel + Small Camel ]
- * @author: SolarisNeko
- * @date: 2021/7/4
+ * title 处理 char 工具
+ * description: 目前主要用来处理 [ Big Camel + Small Camel ]
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/4
  */
 public class CamelCaseUtil {
 

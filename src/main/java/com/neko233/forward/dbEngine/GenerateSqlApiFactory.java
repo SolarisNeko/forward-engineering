@@ -11,7 +11,7 @@ import java.util.Map;
  * Template + Strategy 构建 SQL
  *
  * @author SolarisNeko
- * @date 2021/7/4
+ * date on 2021/7/4
  */
 public interface GenerateSqlApiFactory {
 

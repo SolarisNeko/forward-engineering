@@ -1,5 +1,6 @@
 package com.neko233.forward.util;
 
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -9,8 +10,8 @@ public class StringUtilsByForward {
 
     /**
      * 首字母大写
-     * @param content
-     * @return
+     * @param content 内容
+     * @return 首字母大写
      */
     public static String firstWordUpperCase(String content) {
         if (StringUtils.isBlank(content)) {
@@ -24,8 +25,8 @@ public class StringUtilsByForward {
 
     /**
      * 首字母小写
-     * @param content
-     * @return
+     * @param content 内容
+     * @return 首字母大写
      */
     public static String firstWordLowerCase(String content) {
         if (StringUtils.isBlank(content)) {

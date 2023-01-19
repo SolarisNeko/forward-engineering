@@ -1,6 +1,6 @@
 # ForwardEngine 正向工程
 # 介绍
-@author: SolarisNeko
+@author SolarisNeko
 
 English:
 

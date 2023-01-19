@@ -6,10 +6,10 @@ import com.neko233.forward.dbEngine.metadata.ColumnMetaData;
 import com.neko233.forward.dbEngine.metadata.TableMetaData;
 
 /**
- * @title:
- * @description:
- * @author: SolarisNeko
- * @date: 2021/7/11
+ * title:
+ * description:
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/11
  */
 public class MysqlGenerateSqlApi implements GenerateSqlApi {
 

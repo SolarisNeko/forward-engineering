@@ -2,7 +2,7 @@ package com.neko233.forward.dbEngine.constant;
 
 /**
  * @author LHJ
- * @date 2021/7/5
+ * date on 2021/7/5
  */
 public enum EngineEnum {
     MYISAM("MyISAM"),

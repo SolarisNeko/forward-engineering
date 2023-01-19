@@ -4,20 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 引入Sonatype官方的一个通用配置oss-parent，
-    这样做的好处是很多pom.xml的发布配置不需要自己配置了 -->
-    <!--    <parent>-->
-    <!--        <groupId>org.sonatype.oss</groupId>-->
-    <!--        <artifactId>oss-parent</artifactId>-->
-    <!--        <version>7</version>-->
-    <!--    </parent>-->
-
     <groupId>com.neko233</groupId>
     <artifactId>forward-engineering</artifactId>
     <version>1.0.0</version>
 
-    <name>ForwardEngineering</name>
+    <name>forward-engineering</name>
     <url>https://gitee.com/SolarisNeko/forward-engineering</url>
+
     <description>
         ForwardEngineering is a Java Class -> Code Generator Tech.
         1. you can generate DB Table DDL (example: MySQL)
@@ -63,7 +56,7 @@
         <dependency>
             <groupId>com.neko233</groupId>
             <artifactId>neko233-utils-all</artifactId>
-            <version>0.3.1</version>
+            <version>0.3.2</version>
         </dependency>
 
         <dependency>
@@ -126,22 +119,11 @@
     </profiles>
     <build>
         <plugins>
-            <!-- test -->
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-            <!-- deploy -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
                     <descriptorRefs>
-<!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
                         <descriptorRef>project</descriptorRef>
                     </descriptorRefs>
                     <archive>

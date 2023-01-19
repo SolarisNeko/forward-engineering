@@ -11,8 +11,8 @@ public interface CodeEngine {
     /**
      * 生成 MVC 代码
      *
-     * @param metadata
-     * @return
+     * @param metadata 元数据
+     * @return 生成的代码
      */
     String generateCode(CodeEngineMetadata metadata);
 

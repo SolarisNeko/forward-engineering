@@ -2,7 +2,7 @@ package com.neko233.forward.codeEngine;
 
 import com.neko233.forward.codeEngine.constant.CodeEngineName;
 import com.neko233.forward.codeEngine.impl.CodeEngineByJavaDaoCrudSimpleTemplate;
-import com.neko233.forward.codeEngine.impl.CodeEngineByJavaSpringWeb_v2_x_x;
+import com.neko233.forward.codeEngine.impl.CodeEngineByJavaSpringWebV2xx;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class CodeEngineFactory {
      * default & extra
      */
     private static final Map<String, CodeEngine> CODE_ENGINE_MAP = new HashMap<String, CodeEngine>() {{
-        put(CodeEngineName.JAVA_SPRING_WEB_2_x_x, new CodeEngineByJavaSpringWeb_v2_x_x());
+        put(CodeEngineName.JAVA_SPRING_WEB_2_x_x, new CodeEngineByJavaSpringWebV2xx());
         put(CodeEngineName.JAVA_DAO_CRUD_SIMPLE_TEMPLATE, new CodeEngineByJavaDaoCrudSimpleTemplate());
     }};
 

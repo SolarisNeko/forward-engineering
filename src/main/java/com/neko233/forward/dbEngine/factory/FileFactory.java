@@ -3,10 +3,10 @@ package com.neko233.forward.dbEngine.factory;
 import java.io.*;
 
 /**
- * @title: File Factory
- * @description: 生产 .sql 文件
- * @author: SolarisNeko
- * @date: 2021/7/6
+ * title: File Factory
+ * description: 生产 .sql 文件
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/6
  */
 public class FileFactory {
 

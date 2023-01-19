@@ -12,18 +12,18 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * @title: 包扫描器
- * @description: 扫描指定 package 下的所有 Class (递归)
- * @author: SolarisNeko
- * @date: 2021/7/5
+ * title: 包扫描器
+ * description: 扫描指定 package 下的所有 Class (递归)
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/5
  */
 public class PackageScanner {
 
     /**
      * 从指定的 package 中,获取所有 Class
      *
-     * @param packageName
-     * @return
+     * @param packageName 包
+     * @return 扫描的类
      */
     public static List<Class<?>> getClasses(String packageName) {
         List<Class<?>> classList = new ArrayList<Class<?>>();

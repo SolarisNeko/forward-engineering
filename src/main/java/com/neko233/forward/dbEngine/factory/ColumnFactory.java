@@ -5,10 +5,10 @@ import com.neko233.forward.dbEngine.metadata.ColumnMetaData;
 import java.util.Arrays;
 
 /**
- * @title:
- * @description:
- * @author: SolarisNeko
- * @date: 2021/7/4
+ * title:
+ * description:
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/4
  */
 public class ColumnFactory {
 

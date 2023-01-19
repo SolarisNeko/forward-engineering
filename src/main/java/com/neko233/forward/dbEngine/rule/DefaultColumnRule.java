@@ -3,10 +3,10 @@ package com.neko233.forward.dbEngine.rule;
 import com.neko233.forward.dbEngine.annotation.Column;
 
 /**
- * @title:
- * @description:
- * @author: SolarisNeko
- * @date: 2021/7/4
+ * title:
+ * description:
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/4
  */
 public class DefaultColumnRule {
     /**

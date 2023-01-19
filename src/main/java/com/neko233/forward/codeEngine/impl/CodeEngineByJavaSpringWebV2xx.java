@@ -1,7 +1,7 @@
 package com.neko233.forward.codeEngine.impl;
 
 import com.neko233.common.base.KvTemplate;
-import com.neko233.common.reflect.ReflectUtils;
+import com.neko233.common.reflect.ReflectUtils233;
 import com.neko233.forward.codeEngine.CodeEngine;
 import com.neko233.forward.codeEngine.domain.CodeEngineMetadata;
 import com.neko233.forward.util.StringUtilsByForward;
@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * @author SolarisNeko on 2023-01-19
  **/
-public class CodeEngineByJavaSpringWeb_v2_x_x implements CodeEngine {
+public class CodeEngineByJavaSpringWebV2xx implements CodeEngine {
 
     public static final String CONTROLLER_NAME = "controller";
     public static final String SERVICE = "service";
@@ -25,7 +25,7 @@ public class CodeEngineByJavaSpringWeb_v2_x_x implements CodeEngine {
 
         Class clazz = metadata.getTargetClass();
         final String className = clazz.getSimpleName();
-        List<Field> allFieldsRecursive = ReflectUtils.getAllFieldsRecursive(clazz);
+        List<Field> allFieldsRecursive = ReflectUtils233.getAllFieldsRecursive(clazz);
 
         final Map<String, String> propertiesMap = new HashMap<String, String>() {{
             put("className", className);

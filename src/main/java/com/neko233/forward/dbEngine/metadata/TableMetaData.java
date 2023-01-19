@@ -10,10 +10,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @title:
- * @description:
- * @author: SolarisNeko
- * @date: 2021/7/11
+ * title:
+ * description:
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/11
  */
 @Data
 @NoArgsConstructor

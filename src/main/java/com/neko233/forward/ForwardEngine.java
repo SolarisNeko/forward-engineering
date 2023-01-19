@@ -14,11 +14,11 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
- * @title: Engine.
- * @description: 正向工程引擎 for RDS 关系型数据库
+ * title: Engine.
+ * description: 正向工程引擎 for RDS 关系型数据库
  * <p> Java Class -> SQL </p>
- * @author: SolarisNeko
- * @date: 2021/7/4
+ * @author SolarisNeko
+ * SolarisNeko 2021/7/4
  */
 @Slf4j
 public class ForwardEngine {
