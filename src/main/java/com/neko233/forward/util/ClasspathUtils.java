@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * @author LuoHaoJun on 2023-01-19
+ * @author SolarisNeko on 2023-01-19
  **/
 public class ClasspathUtils {
 

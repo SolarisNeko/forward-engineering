@@ -14,12 +14,16 @@
 
     <groupId>com.neko233</groupId>
     <artifactId>forward-engineering</artifactId>
-    <version>0.0.5</version>
+    <version>1.0.0</version>
 
     <name>ForwardEngineering</name>
     <url>https://gitee.com/SolarisNeko/forward-engineering</url>
     <description>
-        ForwardEngineering is a Java Pojo -> DB Table DDL (like MySQL).
+        ForwardEngineering is a Java Class -> Code Generator Tech.
+        1. you can generate DB Table DDL (example: MySQL)
+        2. you can generate Spring Web MVC Code
+        3. you can generate Event Handler in Reactive Style by your self~
+        Official only support very simple Template to you, but you can DIY your self. Enjoy it!
     </description>
 
     <developers>
@@ -137,7 +141,8 @@
                 <version>3.3.0</version>
                 <configuration>
                     <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
+<!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
+                        <descriptorRef>project</descriptorRef>
                     </descriptorRefs>
                     <archive>
                         <manifest>

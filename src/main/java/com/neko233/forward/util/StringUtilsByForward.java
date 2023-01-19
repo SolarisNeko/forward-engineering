@@ -3,7 +3,7 @@ package com.neko233.forward.util;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author LuoHaoJun on 2023-01-19
+ * @author SolarisNeko on 2023-01-19
  **/
 public class StringUtilsByForward {
 
