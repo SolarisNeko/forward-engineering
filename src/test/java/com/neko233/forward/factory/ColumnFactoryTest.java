@@ -1,11 +1,9 @@
 package com.neko233.forward.factory;
 
-import com.neko233.forward.metadata.ColumnMetaData;
+import com.neko233.forward.dbEngine.factory.ColumnFactory;
+import com.neko233.forward.dbEngine.metadata.ColumnMetaData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
 
 /**
  * @author SolarisNeko

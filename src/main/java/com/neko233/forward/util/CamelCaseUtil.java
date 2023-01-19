@@ -1,6 +1,6 @@
 package com.neko233.forward.util;
 
-import com.neko233.forward.exception.NekoException;
+import com.neko233.forward.dbEngine.exception.NekoException;
 
 /**
  * @title 处理 char 工具

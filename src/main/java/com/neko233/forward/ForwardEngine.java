@@ -1,9 +1,10 @@
 package com.neko233.forward;
 
-import com.neko233.forward.constant.DbType;
-import com.neko233.forward.factory.FileFactory;
-import com.neko233.forward.strategy.generate.GenerateStrategy;
-import com.neko233.forward.scan.PackageScanner;
+import com.neko233.forward.dbEngine.GenerateSqlApi;
+import com.neko233.forward.dbEngine.GenerateSqlApiFactory;
+import com.neko233.forward.dbEngine.constant.DbType;
+import com.neko233.forward.dbEngine.factory.FileFactory;
+import com.neko233.forward.util.PackageScanner;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileNotFoundException;
@@ -14,14 +15,27 @@ import java.util.stream.Collectors;
 
 /**
  * @title: Engine.
- * @description: 正向工程引擎，类似于 Facade Pattern.
+ * @description: 正向工程引擎 for DB.
+ * <p> Java Class -> SQL </p>
  * @author: SolarisNeko
  * @date: 2021/7/4
  */
 @Slf4j
 public class ForwardEngine {
 
-    private static GenerateStrategy SQL_GENERATE_FACTORY;
+    private static GenerateSqlApi SQL_GENERATE_FACTORY;
+
+
+    /**
+     * 注册自定义的【生成策略】
+     *
+     * @param key      策略名
+     * @param strategy 策略
+     */
+    public static void registerGenerateStrategy(String key, GenerateSqlApi strategy) {
+        GenerateSqlApiFactory.register(key, strategy);
+    }
+
 
     /**
      * 运行单个 class
@@ -46,14 +60,16 @@ public class ForwardEngine {
     }
 
     public static String runClass(String dbType, Class<?> clazz) {
-
         // super Factory
-        SQL_GENERATE_FACTORY = GenerateStrategy.getStrategyByDbType(dbType);
-        System.out.println("---------- 正向工程 Start ----------------------");
+        SQL_GENERATE_FACTORY = GenerateSqlApiFactory.choose(dbType);
+        if (log == null) {
+            System.out.println("你需要有一个 SLF4J 实现哦~ ");
+        }
+        log.info("---------- 正向工程 Start ----------------------");
         // 投入 class
         String createSql = SQL_GENERATE_FACTORY.generateCreateSqlByClass(clazz);
-        System.out.println("\n" + createSql + "\n");
-        System.out.println("---------- 正向工程 End ----------------------");
+        log.info("---------- 正向工程 End ----------------------");
+        log.info("---------- you need to print return value by yourself ----------------------");
         return createSql;
     }
 
@@ -65,7 +81,6 @@ public class ForwardEngine {
     }
 
     public static void runPackage(String dbType, String packageName) {
-
         // 1、scan all Class in package
         List<Class<?>> allClasses = PackageScanner.getClasses(packageName);
 
@@ -75,10 +90,10 @@ public class ForwardEngine {
                 .collect(Collectors.toList());
 
         // super Factory
-        SQL_GENERATE_FACTORY = GenerateStrategy.getStrategyByDbType(dbType);
+        SQL_GENERATE_FACTORY = GenerateSqlApiFactory.choose(dbType);
 
         // 2、正向工程
-        System.out.println("---------- 正向工程 Start ----------------------");
+        log.info("---------- 正向工程 Start ----------------------");
         StringBuilder sqlBuilder = new StringBuilder();
         for (Class<?> clazz : classes) {
             // 投入 class
@@ -89,31 +104,22 @@ public class ForwardEngine {
         //  todo - 扫描 package, 会生成文件
         try {
             // 生成 .sql 文件 | 如果已存在, 则覆盖
-            System.out.println("请稍等.. \n");
+            log.info("请稍等.. \n");
             // 计算节省时间
             long needSeconds = sqlBuilder.toString().length() / 2 / 60;
-            System.out.println("帮你节省 " + needSeconds + " 分钟 \n");
+            log.info("帮你节省 " + needSeconds + " 分钟 \n");
 
             /** 生成文件 */
             FileFactory.generateSqlFile(sqlBuilder.toString());
 
-            System.out.println("正向工程 Finished!\n\n请检查项目中的新文件夹 ~/SQL/target.sql \n");
+            log.info("正向工程 Finished!\n\n请检查项目中的新文件夹 ~/SQL/target.sql \n");
         } catch (FileNotFoundException e) {
             System.err.println("写入到文件失败！");
         } catch (IOException e) {
             System.err.println("创建文件失败");
         }
 
-        System.out.println("---------- 正向工程 End ----------------------");
-    }
-
-    /**
-     * 注册自定义的【生成策略】
-     * @param key 策略名
-     * @param strategy 策略
-     */
-    public static void registerGenerateStrategy(String key, GenerateStrategy strategy) {
-        GenerateStrategy.registerStrategy(key, strategy);
+        log.info("---------- 正向工程 End ----------------------");
     }
 
 
@@ -121,17 +127,13 @@ public class ForwardEngine {
      * 文档
      */
     public static void readMe() {
-        System.out.println("------------ How to use ForwardEngineer -------------------");
-        System.out.println();
-        System.out.println("入口类 = ForwardEngineer.java ");
-        System.out.println();
-        System.out.println("单个 .java 文件 : ");
-        System.out.println(" ForwardEngine.runClass(\"com.neko.pojo.entity.SystemUser\"); ");
-        System.out.println();
-        System.out.println("扫描 package :");
-        System.out.println(" ForwardEngine.runPackage(\"com.neko.pojo.entity\"); ");
-        System.out.println();
-        System.out.println("-----------------------------------------------");
+        log.info("------------ How to use ForwardEngineer -------------------");
+        log.info("入口类 = ForwardEngineer.java ");
+        log.info("[Demo] 单个 .java 文件 : ");
+        log.info(" ForwardEngine.runClass(\"com.neko233.forward.pojo.entity.SystemUser\"); ");
+        log.info("[Demo] 扫描 package :");
+        log.info(" ForwardEngine.runPackage(\"com.neko233.forward.pojo.entity\"); ");
+        log.info("-----------------------------------------------");
     }
 
 }
