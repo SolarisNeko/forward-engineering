@@ -21,9 +21,8 @@ import java.util.stream.Collectors;
  * @date: 2021/7/4
  */
 @Slf4j
-public class ForwardEngineForCode {
-
-
+public class CodeForwardEngine {
+    
     /**
      * 运行单个 class
      */
@@ -53,10 +52,9 @@ public class ForwardEngineForCode {
                 .diyConfigMap(Optional.ofNullable(diyConfigMap).orElse(Collections.emptyMap()))
                 .targetClass(clazz)
                 .build();
-        String mvcCode = codeEngine.generateCode(metadata);
+        String generateCode = codeEngine.generateCode(metadata);
         log.info("---------- 正向工程 End ----------------------");
-        log.info("---------- you need to print return value by yourself ----------------------");
-        return mvcCode;
+        return generateCode;
     }
 
     /**
@@ -106,11 +104,13 @@ public class ForwardEngineForCode {
      */
     public static void readMe() {
         log.info("------------ How to use ForwardEngineer -------------------");
-        log.info("入口类 = ForwardEngineer.java ");
-        log.info("[Demo] 单个 .java 文件 : ");
-        log.info(" ForwardEngine.runClass(\"com.neko233.forward.pojo.entity.SystemUser\"); ");
-        log.info("[Demo] 扫描 package :");
-        log.info(" ForwardEngine.runPackage(\"com.neko233.forward.pojo.entity\"); ");
+        log.info("        String s = CodeForwardEngine.runClass(CodeEngineName.JAVA_SPRING_WEB_2_x_x, Email.class);\n" +
+                "        System.out.println(s); \n");
+        
+        log.info(" you can diy your Template  \n");
+        
+        log.info(" you can diy your Template");
+        
         log.info("-----------------------------------------------");
     }
 
